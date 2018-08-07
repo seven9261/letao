@@ -10,9 +10,9 @@ if( location.href.indexOf("login.html") === -1  ){
    // 不是 login.html, 进行登陆拦截判断
    $.ajax({
      type: "get",
-     url: "/employee/employeeLogout",
+     url: "/employee/checkRootLogin",
      dataType: "json",
-     succedss: function( info ){
+     success: function( info ){
         console.log(info);
         if ( info.success ) {
           console.log( "已登陆" );
