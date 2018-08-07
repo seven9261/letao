@@ -21,38 +21,109 @@ $(function() {
 
     // 配置字段 (不要忘记给input加name)
     fields: {
+      // 用户校验
       username: {
         // 校验规则
         validators: {
           // 非空校验
           notEmpty: {
             // 配置提示信息
-            message: "用户名不能为空"
+            message: "用户名不能为空 !"
           },
           // 长度校验
           stringLength: {
             min: 2,
             max: 6,
             message: "用户名长度必须是2-6位"
+          },
+          // 登录成功校验  ajax
+          callback: {
+            message: "用户名不存在 !"
           }
         }
       },
+      // 密码校验
       password: {
         validators: {
           // 非空校验
           notEmpty: {
-            message: "密码不能为空"
+            message: "密码不能为空 !"
           },
           // 长度校验
           stringLength: {
             min: 6,
             max: 12,
             message: "密码长度必须是6-12位"
+          },
+           // 登录成功校验  ajax
+           callback: {
+            message: "密码错误 !"
           }
         }
       }
     }
   });
+
+
+  //2 实现登录功能 submit按钮 默认点击时进行表单提交 ,插件会在表单进行提交时进行验证
+  // 1. 如果登录成功 跳转到首页面
+  // 2. 如果登录失败 默认插件阻止跳转
+
+  // 注册表单校验成功事件 在事件中阻止默认行为 ，通过ajax进行提交请求
+  $('#form').on("success.form.bv",function( e ){
+    // console.log( e );
+    
+    // 手动阻止浏览器默认行为 阻止表单默认提交
+    e.preventDefault();
+
+    // console.log('表单校验 成功');
+    $.ajax({
+      type:"post",
+      url: '/employee/employeeLogin',
+      data: $('#form').serialize(),
+      dataType: "json",
+      success: function (info) {
+        console.log(info);
+        // {success: true} 表单校验成功
+        // {error: 1000, message: "用户名不存在! "}
+        // {error: 1001, message: "密码错误！"}
+        if ( info.success ){
+            // 登录成功跳转
+            location.href = 'index.html';
+        }
+        if ( info.error === 1000 ){
+            // alert('用户名不存在!');
+            // 如果用户名不存在, 需要将表单校验状态置成 校验失败 状态, 并提示用户
+            // 插件方法 updateStatus
+            // 参数1: 字段名称  (name名字)
+            // 参数2: 校验状态, VALID成功的, INVALID失败的, NOT_VALIDATED未校验的
+            // 参数3: 指定校验规则, 可以设置提示信息
+            $('#form').data("bootstrapValidator").updateStatus("username", "INVALID", "callback")
+          
+        }
+        if ( info.error === 1001 ){
+            // alert('密码错误！');
+            $('#form').data("bootstrapValidator").updateStatus("password", "INVALID", "callback")
+        }
+        
+        
+      }
+    })
+    
+
+
+
+  })
+
+
+  //3  解决重置按钮bug 
+
+  $('[type="reset"]').click(function(){
+    // 需要调用插件方法 , 进行重置表单校验状态
+    // 不传 true, 只重置校验状态, 传 true, 文本内容和校验状态都进行重置
+    $('#form').data("bootstrapValidator").resetForm();
+  });
+
 
 
 
