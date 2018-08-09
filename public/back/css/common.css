@@ -80,7 +80,6 @@ a:active {
 }
 .lt-main {
   height: 2000px;
-  background-color: darkseagreen;
   padding-left: 180px;
   padding-top: 68px;
   transition: all 1s;
@@ -102,6 +101,11 @@ a:active {
   color: #fff;
   text-align: center;
   font-size: 18px;
+}
+.lt-main .echarts_1,
+.lt-main .echarts_2 {
+  width: 48%;
+  height: 400px;
 }
 .lt-aside.hidemenu {
   left: -180px;
