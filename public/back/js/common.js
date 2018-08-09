@@ -7,7 +7,7 @@
 // 一进入页面, 发送 ajax 请求, 获取当前用户登陆状态
 // 如果是登陆页, 不需要登陆, 就可以访问, 不需要判断登陆状态
 if( location.href.indexOf("login.html") === -1  ){
-   // 不是 login.html, 进行登陆拦截判断
+  //  不是 login.html, 进行登陆拦截判断
    $.ajax({
      type: "get",
      url: "/employee/checkRootLogin",

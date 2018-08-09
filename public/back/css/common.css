@@ -85,9 +85,6 @@ a:active {
   padding-top: 68px;
   transition: all 1s;
 }
-.lt-main .hidemenu {
-  padding-left: 0px;
-}
 .lt-main .lt_topbar {
   position: fixed;
   left: 0;
@@ -98,9 +95,6 @@ a:active {
   background-color: #3C8DBC;
   transition: all 1s;
 }
-.lt-main .lt_topbar .hidemenu {
-  padding-left: 0px;
-}
 .lt-main .lt_topbar .icon_menu,
 .lt-main .lt_topbar .icon_logout {
   width: 50px;
@@ -108,6 +102,15 @@ a:active {
   color: #fff;
   text-align: center;
   font-size: 18px;
+}
+.lt-aside.hidemenu {
+  left: -180px;
+}
+.lt-main.hidemenu {
+  padding-left: 0px;
+}
+.lt_topbar.hidemenu {
+  padding-left: 0px;
 }
 .lt-login .panel .panel-title {
   height: 40px;

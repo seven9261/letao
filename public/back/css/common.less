@@ -109,9 +109,9 @@
     padding-left: 180px;
     padding-top: 68px;
     transition: all 1s;
-    .hidemenu {
-      padding-left: 0px;
-    }
+    // .hidemenu {
+    //   padding-left: 0px;
+    // }
 
     // 顶部固定栏
     .lt_topbar{
@@ -123,9 +123,9 @@
       padding-left: 180px;
       background-color: #3C8DBC;
       transition: all 1s;
-      .hidemenu {
-        padding-left: 0px;
-      }
+      // .hidemenu {
+      //   padding-left: 0px;
+      // }
     }
     .lt_topbar .icon_menu,
     .lt_topbar .icon_logout {
@@ -136,6 +136,15 @@
       font-size: 18px;
     }
 
+  }
+  .lt-aside.hidemenu {
+    left: -180px;
+  }
+  .lt-main.hidemenu {
+    padding-left: 0px;
+  }
+  .lt_topbar.hidemenu {
+    padding-left: 0px;
   }
 
 
