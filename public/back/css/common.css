@@ -82,7 +82,7 @@ a:active {
   padding-left: 60px;
 }
 .lt-main {
-  height: 2000px;
+  height: 100%;
   padding-left: 180px;
   padding-top: 68px;
   transition: all 1s;
